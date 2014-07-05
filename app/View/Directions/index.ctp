@@ -1,4 +1,6 @@
+<div data-role="header">
 <h2> List of Directions<h2>
+</div>
 
 <?php echo $this->Html->link(
     'Add Direction',

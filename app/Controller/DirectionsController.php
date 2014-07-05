@@ -7,6 +7,7 @@ class DirectionsController extends AppController{
 	var $name = 'Directions';
 
 	public function index() {
+		$this->set('title_for_layout', 'View Directions');
         $this->set('directions', $this->Direction->find('all'));
     }
 

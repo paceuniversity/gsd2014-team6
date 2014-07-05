@@ -1,71 +1,38 @@
-<?php
-/**
- *
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+<title><?php echo $this->fetch('title'); ?></title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<!-- Include external files and scripts here (See HTML helper for more info.) -->
+<!--link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" /-->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+<?php
+echo $this->Html->css('jquerycss');
+echo $this->Html->css('custom');
 
-		echo $this->Html->css('cake.generic');
-		echo $this->Html->css('jquery.mobile');
-
-		echo $this->Html->script('jquery');
-
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-		
-	?>
+echo $this->fetch('meta');
+echo $this->fetch('css');
+echo $this->fetch('script');
+?>
 </head>
 <body>
-	<div data-role="page" \>
-		<div date-role="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div data-role="content">
 
-			<?php echo $this->Session->flash(); ?>
+<div data-role="page" id="pageone">
+<!-- If you'd like some sort of menu to
+show up on all of your views, include it here -->
+<div data-role="header">
+    <h1>This is the Header<h2>
+</div>
+<div data-role="main" class="ui-content">
+<!-- Here's where I want my views to be displayed -->
+<?php echo $this->fetch('content'); ?>
+</div>
+<!-- Add a footer to each displayed page -->
+<div data-role="footer">
+    <h1>Insert Footer Text Here</h1>
+ </div>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
-	</div>
-	<?php echo $this->element('sql_dump'); 
-	echo $this->Js->writeBuffer(); // Write cached scripts
-	?>
+</div>
 </body>
 </html>
