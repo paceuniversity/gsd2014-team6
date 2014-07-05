@@ -26,23 +26,41 @@ echo $this->fetch('script');
 
 <div data-role="page" id="pageone">
 
-  <div data-role="panel" id="myPanel"> 
+  <!--div data-role="panel" id="myPanel"> 
     <h2>Panel Header</h2>
     <ul data-role="listview">
 		    		<li><a href="#">Traditional Recipes</a></li>
 		    		<li><a href="#">Twist List</a></li>
 		    		<li><a href="#">Ingredients</a></li>
 		    	</ul>
-  </div> 
+  </div--> 
 
 <!-- If you'd like some sort of menu to
 show up on all of your views, include it here -->
 	<div data-role="header">
 	<div data-role="navbar">
 	<ul>
-		<li><a href="#myPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Menu</a></li>
+		<li><a href="#my-menu">Menu</a></li>
 	</ul>
 	</div>	
+	<!--ul>
+	 <li><a href="#myPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Open Panel</a></li>
+	</ul-->	
+	<nav id ="my-menu">
+		    	<ul>
+		    		<li><a href="#">Traditional Recipes</a></li>
+		    		<li><a href="#">Twist List</a></li>
+		    		<li><a href="#">Ingredients</a></li>
+		    	</ul>
+		    </nav>	
+		<script>
+		   $(document).ready(function() {
+		      $("#my-menu").mmenu();
+		      	$("#my-button").click(function() {
+		        	$("#my-menu").trigger("open.mm");
+		      });
+		   });
+		</script>
 	</div>    
 
 <div data-role="main" class="ui-content">
