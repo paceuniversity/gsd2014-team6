@@ -1,7 +1,8 @@
 <?php
 
 class Recipe extends AppModel {
-	var $name = 'Recipe'; 
+	var $name = 'Recipe';
+    public $primaryKey = 'id'; 
 
 	public $hasMany = array(
         'Direction' => array(

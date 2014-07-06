@@ -6,3 +6,4 @@
 	<?php echo h($recipe_item['Recipe']['description']); ?>
 
 </p>
+<?php echo $this->Html->link('Twist', array('action' => 'twist', $recipe_item['Recipe']['id']));?>

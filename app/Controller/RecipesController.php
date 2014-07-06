@@ -40,6 +40,7 @@ class RecipesController extends AppController{
 	    }
 
 	    $recipe = $this->Recipe->findById($id);
+
 	    if (!$recipe) {
 	        throw new NotFoundException(__('Invalid Recipe'));
 	    }
@@ -57,6 +58,32 @@ class RecipesController extends AppController{
 	        $this->request->data = $recipe;
 	    }
 	}
+	public function twist($id = null) {
+		
+       if (!$id) {
+	        throw new NotFoundException(__('Invalid Recipe'));
+	    }
+
+	    $recipe = $this->Recipe->findById($id);
+	    
+	    
+	    if (!$recipe) {
+	        throw new NotFoundException(__('Invalid Recipe'));
+	    }
+
+	    if ($this->request->is(array('post', 'put'))) {
+	        $this->Recipe->id = $id;
+	        if ($this->Recipe->save($this->request->data)) {
+	            $this->Session->setFlash(__('Your recipe has been updated.'));
+	            return $this->redirect(array('action' => 'index'));
+	        }
+	        $this->Session->setFlash(__('Unable to update.'));
+	    }
+
+	    if (!$this->request->data) {
+	        $this->request->data = $recipe;
+	    }
+    }
 	public function delete($id) {
 	    if ($this->request->is('get')) {
 	        throw new MethodNotAllowedException();

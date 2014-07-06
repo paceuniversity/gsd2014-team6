@@ -29,9 +29,10 @@ echo $this->fetch('script');
   <div data-role="panel" id="myPanel"> 
     <h2>Panel Header</h2>
     <ul data-role="listview">
-		    		<li><a href="#">Traditional Recipes</a></li>
+		    		<li><?php echo $this->Html->link('Traditional Recipes',array('controller' =>'recipes', 'action' => 'index'));?></li>
 		    		<li><a href="#">Twist List</a></li>
-		    		<li><a href="#">Ingredients</a></li>
+		    		<li><?php echo $this->Html->link('Ingredients', array('controller' => 'ingredients', 'action' => 'index')); ?></li>
+		    		<li><?php echo $this->Html->link('Add Ingredient', array('controller' => 'ingredients', 'action' => 'add')); ?></li>
 		    	</ul>
   </div> 
 
