@@ -7,7 +7,14 @@ class RecipesController extends AppController{
 	var $name = 'Recipes';
 
 	public function index() {
-        $this->set('recipes', $this->Recipe->find('all'));
+        $this->set('recipes', $this->Recipe->find('all', array(
+        'conditions' => array('Recipe.twisted' => '0'))));
+    }
+
+    public function twistindex() {
+
+        $this->set('recipes', $this->Recipe->find('all', array(
+        'conditions' => array('Recipe.twisted' => '1'))));
     }
 
 	public function view($id = NULL) {
@@ -65,6 +72,7 @@ class RecipesController extends AppController{
         }
 
        	unset($recipe['Recipe']['id']);
+        $recipe['Recipe']['twisted'] = 1;
         if (!$this->request->is('post')) {
             $this->data = $recipe;
             return;

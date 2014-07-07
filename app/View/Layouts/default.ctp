@@ -30,7 +30,7 @@ echo $this->fetch('script');
     <h2>Panel Header</h2>
     <ul data-role="listview">
 		    		<li><?php echo $this->Html->link('Traditional Recipes',array('controller' =>'recipes', 'action' => 'index'));?></li>
-		    		<li><a href="#">Twist List</a></li>
+		    		<li><?php echo $this->Html->link('Twist List',array('controller' =>'recipes', 'action' => 'twistindex'));?></li>
 		    		<li><?php echo $this->Html->link('Ingredients', array('controller' => 'ingredients', 'action' => 'index')); ?></li>
 		    		<li><?php echo $this->Html->link('Add Ingredient', array('controller' => 'ingredients', 'action' => 'add')); ?></li>
 		    	</ul>
