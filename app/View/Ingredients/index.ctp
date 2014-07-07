@@ -1,17 +1,25 @@
 <h2> List of Ingredients<h2>
 
-<?php echo $this->Html->link(
-    'Add Ingredient',
-    array('controller' => 'ingredients', 'action' => 'add')
-); ?>
+<ul data-role="listview">
+	<?php foreach ($ingredients as $ingredient) : ?>
+	<li>	<?php 
+				echo $this->Html->link(
+					$ingredient['Ingredient']['title'],
+					array('action'=>'view', $ingredient['Ingredient']['id'])
+				); 
+			;?> 
+	</li>
+	
+	<?php endforeach; ?>
+</ul>
 
-<table>
+<!--table>
 	<tr>
 		<th>Name</th>
 		<th>Picture</th>
 		<th>Decription</th>
 	</tr>
-	<?php foreach ($ingredients as $ingredient) : ?>
+	<?php /*foreach ($ingredients as $ingredient) : ?>
 	<tr>
 		<td><?php 
 				echo $this->Html->link(
@@ -38,6 +46,6 @@
         </td>
 	</tr>
 
-	<?php endforeach; ?>
+	<?php endforeach; */?>
 
-</table>
+</table-->
