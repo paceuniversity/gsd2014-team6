@@ -11,7 +11,7 @@ class RecipesController extends AppController{
     }
 
 	public function view($id = NULL) {
-        //$this->set('recipe_item', $this->Recipe->read(NULL, $id));
+        //$this->set('recipe_item', $this->R ecipe->read(NULL, $id));
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
@@ -59,31 +59,26 @@ class RecipesController extends AppController{
 	    }
 	}
 	public function twist($id = null) {
-		
-       if (!$id) {
-	        throw new NotFoundException(__('Invalid Recipe'));
-	    }
+        $recipe = $this->Recipe->findById($id);
+        if (empty($recipe)) {
+            throw new NotFoundException("Recipe not found");
+        }
 
-	    $recipe = $this->Recipe->findById($id);
-	    
-	    
-	    if (!$recipe) {
-	        throw new NotFoundException(__('Invalid Recipe'));
-	    }
-
-	    if ($this->request->is(array('post', 'put'))) {
-	        $this->Recipe->id = $id;
-	        if ($this->Recipe->save($this->request->data)) {
-	            $this->Session->setFlash(__('Your recipe has been updated.'));
-	            return $this->redirect(array('action' => 'index'));
-	        }
-	        $this->Session->setFlash(__('Unable to update.'));
-	    }
-
-	    if (!$this->request->data) {
-	        $this->request->data = $recipe;
-	    }
+       	unset($recipe['Recipe']['id']);
+        if (!$this->request->is('post')) {
+            $this->data = $recipe;
+            return;
+        }
+// #seemslegit 
+        $this->Recipe->create();
+        if ($this->Recipe->save(Hash::merge($recipe, $this->data))) {
+            $this->Session->setFlash(__('Your recipe has been edited.'));
+            return $this->redirect(array('action' => 'index'));
+        } else {
+        	$this->Session->setFlash(__('Poopsicles.'));
+        }
     }
+
 	public function delete($id) {
 	    if ($this->request->is('get')) {
 	        throw new MethodNotAllowedException();
